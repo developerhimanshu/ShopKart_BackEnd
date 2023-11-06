@@ -26,3 +26,24 @@ export const createProduct = async (req: Request, res: Response) => {
     throw error;
   }
 };
+
+export const getProducts = async (req: Request, res: Response) => {
+  try {
+    const products = await Product.find({});
+    res.send(products);
+  } catch (err) {
+    console.log("Error in get products", err);
+    throw err;
+  }
+};
+
+export const getProductById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.send(product);
+  } catch (err) {
+    console.log("Error in get products by Id", err);
+    throw err;
+  }
+};

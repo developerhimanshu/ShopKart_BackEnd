@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import connectToDB from "./db";
 import productRoute from "./routes/product";
+import orderRoute from "./routes/order";
 dotenv.config();
 
 const app = express();
@@ -13,6 +14,7 @@ app.get("/ping", (req, res) => {
 });
 
 app.use("/products", productRoute);
+app.use("/orders", orderRoute);
 
 const PORT = process.env.PORT || 3000;
 

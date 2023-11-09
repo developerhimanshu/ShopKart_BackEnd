@@ -17,7 +17,7 @@ export interface IOrderItem {
   name: string;
   quantity: number;
   image: string;
-  price: string;
+  price: number;
   product: string;
 }
 

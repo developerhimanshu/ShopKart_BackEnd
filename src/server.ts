@@ -3,16 +3,24 @@ import * as dotenv from "dotenv";
 import connectToDB from "./db";
 import productRoute from "./routes/product";
 import orderRoute from "./routes/order";
+import { webhookHandler } from "./webhook";
 dotenv.config();
+const bodyParser = require("body-parser");
 
 const app = express();
-app.use(express.json());
 connectToDB();
 
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
 
+app.post(
+  "/webhook",
+  bodyParser.raw({ type: "application/json" }),
+  webhookHandler
+);
+
+app.use(express.json());
 app.use("/products", productRoute);
 app.use("/orders", orderRoute);
 

@@ -1,5 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import cors from "cors";
 import connectToDB from "./db";
 import productRoute from "./routes/product";
 import orderRoute from "./routes/order";
@@ -8,6 +9,7 @@ dotenv.config();
 const bodyParser = require("body-parser");
 
 const app = express();
+app.use(cors());
 connectToDB();
 
 app.get("/ping", (req, res) => {

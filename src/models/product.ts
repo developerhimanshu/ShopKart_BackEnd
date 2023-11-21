@@ -7,6 +7,12 @@ const productSchema = new Schema<IProduct>(
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      enum: ["male", "female", "kids"],
+      required: true,
+      message: "Type must be one of 'male', 'female', or 'kids'",
+    },
     image: {
       type: String,
       required: true,
@@ -26,5 +32,4 @@ const productSchema = new Schema<IProduct>(
 );
 
 const Product = mongoose.model("Product", productSchema);
-
 export default Product;

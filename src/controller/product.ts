@@ -3,17 +3,18 @@ import Product from "../models/product";
 import { IProduct } from "../types";
 type CreateProductRequestType = Pick<
   IProduct,
-  "image" | "name" | "description" | "price"
+  "image" | "name" | "type" | "description" | "price"
 >;
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { image, name, description, price }: CreateProductRequestType =
+    const { image, name, type, description, price }: CreateProductRequestType =
       req.body;
 
     const product = await Product.create({
       image,
       name,
+      type,
       price,
       description,
     });
@@ -45,5 +46,15 @@ export const getProductById = async (req: Request, res: Response) => {
   } catch (err) {
     console.log("Error in get products by Id", err);
     throw err;
+  }
+};
+
+export const getProductByType = async (req: Request, res: Response) => {
+  try {
+    const { type } = req.params;
+    const products = await Product.find({ type: type });
+    res.send(products);
+  } catch (error) {
+    console.log("Error in getProductByType", error);
   }
 };

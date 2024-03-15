@@ -5,6 +5,7 @@ export interface IProduct {
   description: string;
   price: number;
   image: string;
+  brand:string;
   createdAt: string;
   updatedAt: string;
 }

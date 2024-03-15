@@ -10,5 +10,5 @@ const productRoute = express.Router();
 productRoute.post("/", createProduct);
 productRoute.get("/", getProducts);
 productRoute.get("/:id", getProductById);
-productRoute.get("/type/:type", getProductByType);
+productRoute.get("/:type", getProductByType);
 export default productRoute;

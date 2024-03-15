@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+// import { Schema } from "mongoose";
 import { IProduct } from "../types";
 
 const productSchema = new Schema<IProduct>(
@@ -13,10 +14,14 @@ const productSchema = new Schema<IProduct>(
       required: true,
       message: "Type must be one of 'male', 'female', or 'kids'",
     },
-    image: {
+    brand:{
+      type:String,
+      required:true,
+    },
+    image: [{
       type: String,
       required: true,
-    },
+    }],
     description: {
       type: String,
       required: true,

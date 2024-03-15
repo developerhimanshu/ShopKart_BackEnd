@@ -3,12 +3,12 @@ import Product from "../models/product";
 import { IProduct } from "../types";
 type CreateProductRequestType = Pick<
   IProduct,
-  "image" | "name" | "type" | "description" | "price"
+  "image" | "name" | "type" | "description" | "price"|"brand"
 >;
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { image, name, type, description, price }: CreateProductRequestType =
+    const { image, name, type, description, price, brand }: CreateProductRequestType =
       req.body;
 
     const product = await Product.create({
@@ -17,6 +17,7 @@ export const createProduct = async (req: Request, res: Response) => {
       type,
       price,
       description,
+      brand
     });
     res.send(product);
   } catch (error) {

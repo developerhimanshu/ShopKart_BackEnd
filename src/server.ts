@@ -23,6 +23,9 @@ app.post(
 );
 
 app.use(express.json());
+app.get("/", (req, res)=>{
+  res.send("hello")
+})
 app.use("/products", productRoute);
 app.use("/orders", orderRoute);
 
